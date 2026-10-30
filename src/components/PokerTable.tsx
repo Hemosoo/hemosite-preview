@@ -52,8 +52,13 @@ const fmt = (n: number) => n.toLocaleString("en-US");
  * colour and a low-opacity wash, not by being the brightest object on screen.
  */
 const ACTION =
-  "inline-flex items-center justify-center gap-2 rounded-[5px] border " +
-  "text-[13px] font-semibold tracking-[0.12em] transition-colors";
+  "relative inline-flex items-center justify-center gap-2 rounded-[5px] border " +
+  "text-[13px] font-semibold tracking-[0.12em] transition-colors " +
+  // The band's height is fixed at 40px because that is what keeps the felt
+  // from moving as the controls change, so the target is grown past the
+  // button instead of the button being made taller. Vertically only: these
+  // sit in a row and widening them would have neighbours overlap.
+  "after:absolute after:inset-x-0 after:-inset-y-1 after:content-['']";
 const ACTION_NEUTRAL = "border-line text-subtle hover:border-white/25 hover:text-text";
 const ACTION_PRIMARY = "border-primary/55 bg-primary/[0.08] text-primary hover:bg-primary/[0.16]";
 /** Folding is the quietest action on the table, and reads that way. */
@@ -474,7 +479,7 @@ export default function PokerTable({ onClose }: { onClose: () => void }) {
         <span className="font-semibold text-text">no-limit hold&apos;em</span>
         <span className="text-dim">6-max · 100bb · play chips</span>
         <span className="flex-1" />
-        <label className="flex cursor-pointer items-center gap-1.5 text-dim hover:text-subtle">
+        <label className="relative flex cursor-pointer items-center gap-1.5 text-dim after:absolute after:-inset-x-2 after:-inset-y-1 after:content-[''] hover:text-subtle">
           <input
             type="checkbox"
             checked={autoDeal}
@@ -483,14 +488,12 @@ export default function PokerTable({ onClose }: { onClose: () => void }) {
           />
           auto-deal
         </label>
-        <button onClick={reset} className="text-dim transition-colors hover:text-text">
+        {/* Small type in a thin bar. The target is grown past the label
+            rather than the label grown to fill a target. */}
+        <button onClick={reset} className="relative text-dim transition-colors after:absolute after:-inset-x-2.5 after:-inset-y-3 after:content-[''] hover:text-text">
           reset
         </button>
-        <button
-          onClick={onClose}
-          aria-label="Close table"
-          className="text-dim transition-colors hover:text-text"
-        >
+        <button onClick={onClose} aria-label="Close table" className="relative text-dim transition-colors after:absolute after:-inset-x-2.5 after:-inset-y-3 after:content-[''] hover:text-text">
           [esc]
         </button>
       </header>

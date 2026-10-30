@@ -287,7 +287,10 @@ export default function Terminal({ onEffect }: Props) {
 
           {/* The live prompt sits in the stream rather than in a fixed bar, so
               it walks down the page behind each command the way a shell does. */}
-          <label className="flex items-center gap-2">
+          {/* The whole row is the target, not just the 23px of input inside
+              it. A command line on a phone is the one control here that has
+              to be easy to hit first time. */}
+          <label className="flex min-h-11 cursor-text items-center gap-2">
             <span className="flex-shrink-0"><Prompt /></span>
             <span className="sr-only">Enter a command</span>
             <input
@@ -301,7 +304,7 @@ export default function Terminal({ onEffect }: Props) {
               autoCorrect="off"
               spellCheck={false}
               placeholder={booted ? "type a command, or help" : ""}
-              className="min-w-0 flex-1 bg-transparent text-text caret-primary outline-none placeholder:text-dim"
+              className="min-w-0 flex-1 self-stretch bg-transparent text-text caret-primary outline-none placeholder:text-dim"
             />
           </label>
 
@@ -310,7 +313,11 @@ export default function Terminal({ onEffect }: Props) {
               <button
                 key={c}
                 onClick={() => submit(c)}
-                className="rounded border border-line px-2.5 py-1 text-xs text-subtle transition-colors hover:border-primary/60 hover:text-primary"
+                // Grown past the chip rather than making the chip bigger: a
+                // row of these is a quiet aside, and 26px is a hard target on
+                // a phone. Vertically only — they sit 8px apart, and widening
+                // them would have neighbours overlapping each other.
+                className="relative rounded border border-line px-2.5 py-1 text-xs text-subtle transition-colors after:absolute after:inset-x-0 after:-inset-y-[9px] after:content-[''] hover:border-primary/60 hover:text-primary"
               >
                 {c}
               </button>

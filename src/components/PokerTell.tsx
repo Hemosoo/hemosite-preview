@@ -52,7 +52,7 @@ export default function PokerTell({ onOpen }: { onOpen: () => void }) {
       aria-label="poker — open the hidden table"
     >
       {/* A little more to aim at than the word itself. */}
-      <span aria-hidden className="absolute -inset-2" />
+      <span aria-hidden className="absolute -inset-x-2 -inset-y-2.5" />
 
       {/* Suits drift up out of the word, and come along with it at a third of
           the distance so they read as attached rather than welded. */}

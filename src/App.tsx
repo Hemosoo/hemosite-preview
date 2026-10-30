@@ -119,12 +119,14 @@ export default function App() {
       <About ref={aboutRef} onPoker={() => setPokerOpen(true)} />
 
       <header className="sticky top-0 z-20 flex items-center gap-4 border-y border-line bg-bg/90 px-4 py-3 text-xs backdrop-blur sm:px-8 sm:text-[13px]">
-        <span className="text-dim">hemosoo.dev</span>
+        <span className="text-dim">hemosoo.com</span>
         <span className="flex-1" />
         <button
           onClick={() => setMusicOpen((o) => !o)}
           aria-pressed={musicOpen}
-          className="flex items-center gap-2 text-dim transition-colors hover:text-text"
+          // The bar is thin and the label is small, so the target is grown
+          // past the text rather than the text grown to fill a target.
+          className="relative flex items-center gap-2 text-dim transition-colors after:absolute after:-inset-x-3 after:-inset-y-[14px] after:content-[''] hover:text-text"
         >
           <span className={isPlaying ? "text-green" : "text-dim"}>{isPlaying ? "▶" : "■"}</span>
           music

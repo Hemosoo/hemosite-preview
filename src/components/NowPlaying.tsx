@@ -33,7 +33,9 @@ export default function NowPlaying({ pinned, open, title, isPlaying, embedRef, o
           <button
             onClick={onClose}
             aria-label="Close player"
-            className="text-dim transition-colors hover:text-text"
+            // 22x16 of label; the target is grown around it rather than the
+            // label grown to fill one.
+            className="relative text-dim transition-colors after:absolute after:-inset-x-3 after:-inset-y-3.5 after:content-[''] hover:text-text"
           >
             [x]
           </button>

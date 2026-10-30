@@ -13,7 +13,9 @@
 
   --color-text: #e6e9ef;
   --color-subtle: #c3cad8;
-  --color-dim: #6b7280;
+  /* 5.13:1 on black. #6b7280 was 4.34, just under the 4.5 small text needs,
+     and this colour carries nine of the page's small labels. */
+  --color-dim: #767e8b;
 
   --color-primary: #61afef;
   --color-accent: #c678dd;

@@ -39,7 +39,7 @@ export default function MagneticLink({
       aria-label={label}
     >
       {/* A little more to aim at than the word itself. */}
-      <span aria-hidden className="absolute -inset-2" />
+      <span aria-hidden className="absolute -inset-x-2 -inset-y-2.5" />
 
       <span
         ref={word as React.RefObject<HTMLSpanElement>}
